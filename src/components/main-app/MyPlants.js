@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import axios from "axios";
 import axiosWithAuth from "../../utils/axiosWithAuth";
 
 const initialFormValues = {
@@ -43,7 +42,7 @@ const MyPlants = () => {
 
   const addPlant = (e) => {
     e.preventDefault();
-    axios
+    axiosWithAuth()
       .post("https://api-watermyplants.herokuapp.com/api/plants", formValues)
       .then((res) => {
         setPlantList(res.data);

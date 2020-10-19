@@ -14,11 +14,11 @@ const App = () => {
         <Route exact path="/">
           <MyPlants />
         </Route>
-        <Route exact path="/signup">
-          <SignupForm />
-        </Route>
         <Route exact path="/login">
           <LoginForm />
+        </Route>
+        <Route exact path="/signup">
+          <SignupForm />
         </Route>
       </Switch>
     </div>
