@@ -87,11 +87,12 @@ export default function Form() {
     };
     postNewRegister(newRegister);
   };
-  // useEffect(()=>{
-  //     schema.isValid(formValues).then((valid)=>{
-  //         setDisabled(!valid);
-  //     })
-  // }, [formValues])
+
+  // useEffect(() => {
+  //   schema.isValid(formValues).then((valid) => {
+  //     setDisabled(!valid);
+  //   });
+  // }, [formValues]);
 
   return (
     <div>
@@ -109,7 +110,7 @@ export default function Form() {
           <label>Username: </label>
           <input
             type="text"
-            name="name"
+            name="username"
             placeholder="Enter Your Username"
             value={formValues.name}
             onChange={change}
