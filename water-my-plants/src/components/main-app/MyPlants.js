@@ -35,7 +35,7 @@ const MyPlants = () => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
   };
 
-  const submit = (e) => {
+  const addPlant = (e) => {
     e.preventDefault();
     setPlantList([
       ...plantList,
@@ -49,6 +49,14 @@ const MyPlants = () => {
     setFormValues(initialFormValues);
   };
 
+  const editPlant = (e) => {
+    console.log("edit", e);
+  };
+
+  const removePlant = (e) => {
+    console.log("delete", e);
+  };
+
   return (
     <>
       <div className="plant-card">
@@ -59,15 +67,27 @@ const MyPlants = () => {
               <h3>{plant.plant}</h3>
               <p>{plant.type}</p>
               <p>{plant.schedule}</p>
-              <button>Edit</button>
-              <button>Delete</button>
+              <button
+                onClick={() => {
+                  editPlant();
+                }}
+              >
+                Edit
+              </button>
+              <button
+                onClick={() => {
+                  removePlant();
+                }}
+              >
+                Delete
+              </button>
             </div>
           );
         })}
       </div>
       <div className="plant-form">
         <h2>Add Plants</h2>
-        <form onSubmit={submit}>
+        <form onSubmit={addPlant}>
           <input
             type="text"
             name="plant"
