@@ -1,73 +1,57 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { axiosWithAuth } from "../../utils/axiosWithAuth";
+import axios from "axios";
+// import { axiosWithAuth } from "../../utils/axiosWithAuth";
 
 const initialFormValues = {
-  plant: "",
-  type: "",
-  schedule: "",
+  name: "",
+  location: "",
+  description: "",
+  plantURL: "",
 };
-
-const dummyData = [
-  {
-    id: 1,
-    name: "tree_1",
-    location: "washington",
-    description: "big tree",
-    plantURL: "google.com",
-    userId: 1,
-  },
-  {
-    id: 2,
-    plant: "tree_2",
-    type: "small tree",
-    schedule: "daily",
-  },
-  {
-    id: 3,
-    plant: "tree_3",
-    type: "medium tree",
-    schedule: "every other day",
-  },
-];
 
 const MyPlants = () => {
   const [formValues, setFormValues] = useState(initialFormValues);
-  const [plantList, setPlantList] = useState(dummyData);
+  const [plantList, setPlantList] = useState([]);
   const history = useHistory();
 
   const handleChanges = (e) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
   };
 
+  const fetchPlants = () => {
+    axios
+      .get("https://api-watermyplants.herokuapp.com/api/plants")
+      .then((res) => setPlantList(res.data))
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    fetchPlants();
+  }, []);
+
   const addPlant = (e) => {
     e.preventDefault();
-    axiosWithAuth()
+    axios
       .post("https://api-watermyplants.herokuapp.com/api/plants", formValues)
       .then((res) => {
-        setPlantList(res.data);
+        history.push("/reload");
       })
       .catch((err) => console.log(err));
     setFormValues(initialFormValues);
   };
 
-  // setPlantList([
-  //   ...plantList,
-  //   {
-  //     id: Date.now(),
-  //     name: formValues.plant.trim(),
-  //     location: formValues.type.trim(),
-  //     schedule: formValues.schedule.trim(),
-  //   },
-  // ]);
-
   const editPlant = (e) => {
-    console.log("edit", e);
     history.push(`/update-plant/${plantList.id}`);
   };
 
   const removePlant = (e) => {
-    console.log("delete", e);
+    axios
+      .delete(
+        `https://api-watermyplants.herokuapp.com/api/plants/${plantList.id}`
+      )
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -77,23 +61,12 @@ const MyPlants = () => {
         {plantList.map((plant) => {
           return (
             <div key={plant.id} className="plant-details">
-              <h3>{plant.plant}</h3>
-              <p>{plant.type}</p>
-              <p>{plant.schedule}</p>
-              <button
-                onClick={() => {
-                  editPlant();
-                }}
-              >
-                Edit
-              </button>
-              <button
-                onClick={() => {
-                  removePlant();
-                }}
-              >
-                Delete
-              </button>
+              <img src={plant.plantURL} alt="plant" width="50%" />
+              <h3>{plant.name}</h3>
+              <p>{plant.location}</p>
+              <p>{plant.description}</p>
+              <button onClick={editPlant}>Edit</button>
+              <button onClick={removePlant}>Delete</button>
             </div>
           );
         })}

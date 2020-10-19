@@ -4,13 +4,14 @@ import MyPlants from "./components/main-app/MyPlants";
 import NavBar from "./components/reusable/Navbar";
 import LoginForm from "./components/front-page/LoginForm";
 import SignupForm from "./components/front-page/SignupForm";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 const App = () => {
   return (
     <div className="App">
       <NavBar />
       <Switch>
+        <Redirect exact from="/reload" to="/" />
         <Route exact path="/">
           <MyPlants />
         </Route>
