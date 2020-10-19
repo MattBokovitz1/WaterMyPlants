@@ -4,22 +4,20 @@ import * as yup from "yup";
 import schema from "form-schema-validation";
 
 const initialFormValues = {
-  name: "",
-  email: "",
+  id: "",
+  firstName: "",
+  lastName: "",
+  username: "",
   password: "",
-  confirmpassword: "",
-  cactus: false,
-  orchids: false,
-  fir: false,
-  daisies: false,
-  notes: "",
+  phoneNumber: "",
+  profileURL: "",
 };
 
 const initialFormErrors = {
-  Username: "",
-  email: "",
+  firstName: "",
+  lastName: "",
+  username: "",
   password: "",
-  confirmpassword: "",
 };
 
 export default function Form() {
@@ -76,14 +74,11 @@ export default function Form() {
   const submit = (evt) => {
     evt.preventDefault();
     const newRegister = {
-      name: formValues.name.trim(),
-      email: formValues.email.trim(),
+      username: formValues.username.trim(),
+      firstName: formValues.firstName.trim(),
+      lastName: formValues.lastName.trim(),
+      phoneNumber: formValues.phoneNumber.trim(),
       password: formValues.password.trim(),
-      confirmpassword: formValues.confirmpassword.trim(),
-      plant: ["cactus", "orchids", "fir", "daisies"].filter(
-        (plant) => formValues[plant]
-      ),
-      notes: formValues.notes.trim,
     };
     postNewRegister(newRegister);
   };
@@ -99,10 +94,11 @@ export default function Form() {
       <h2>Register Here!</h2>
       <form onSubmit={submit}>
         <div className="errors-container">
-          <div>{formErrors.name}</div>
-          <div>{formErrors.email}</div>
+          <div>{formErrors.username}</div>
+          <div>{formErrors.firstName}</div>
+          <div>{formErrors.lastName}</div>
+          <div>{formErrors.phoneNumber}</div>
           <div>{formErrors.password}</div>
-          <div>{formErrors.confirmpassword}</div>
         </div>
         <br />
 
@@ -112,20 +108,38 @@ export default function Form() {
             type="text"
             name="username"
             placeholder="Enter Your Username"
-            value={formValues.name}
+            value={formValues.username}
             onChange={change}
           />
           <br />
-          <label>Email: </label>
+          <label>First Name: </label>
           <input
             type="text"
-            name="email"
-            placeholder="Enter Your Email"
-            value={formValues.email}
+            name="firstName"
+            placeholder="Enter Your First Name"
+            value={formValues.firstName}
             onChange={change}
           />
           <br />
-          <label>Password: </label>
+          <label>Last Name: </label>
+          <input
+            type="text"
+            name="lastName"
+            placeholder="Enter Your Last Name"
+            value={formValues.lastName}
+            onChange={change}
+          />
+          <br />
+          <label>Phone Number: </label>
+          <input
+            type="tel"
+            name="phoneNumber"
+            placeholder="Enter Your Phone Number"
+            value={formValues.phoneNumber}
+            onChange={change}
+          />
+          <br />
+          <label> Password: </label>
           <input
             type="text"
             name="password"
@@ -134,64 +148,6 @@ export default function Form() {
             onChange={change}
           />
           <br />
-          <label>Confirm Password: </label>
-          <input
-            type="text"
-            name="confirmpassword"
-            placeholder="Confirm Your Password"
-            value={formValues.confirmpassword}
-            onChange={change}
-          />
-          <br />
-          <h4>Plants</h4>
-          <label>
-            Cactus{" "}
-            <input
-              type="checkbox"
-              name="cactus"
-              checked={formValues.cactus}
-              onChange={change}
-            />
-          </label>
-          <br />
-          <label>
-            Orchids{" "}
-            <input
-              type="checkbox"
-              name="orchids"
-              checked={formValues.orchids}
-              onChange={change}
-            />
-          </label>
-          <br />
-          <label>
-            Fir{" "}
-            <input
-              type="checkbox"
-              name="fir"
-              checked={formValues.fir}
-              onChange={change}
-            />
-          </label>
-          <br />
-          <label>
-            Daisies{" "}
-            <input
-              type="checkbox"
-              name="daisies"
-              checked={formValues.daisies}
-              onChange={change}
-            />
-          </label>
-          <br />
-          <h4>Notes</h4>
-          <input
-            type="text"
-            name="notes"
-            placeholder="Place Notes Here"
-            value={formValues.notes}
-            onChange={change}
-          />
           <br />
           <br />
           <button disabled={disabled}>Click to SignUp</button>

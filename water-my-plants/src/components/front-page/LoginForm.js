@@ -108,6 +108,20 @@ export default function LoginForm() {
             onChange={change}
           />
           <br />
+          <button disabled={disabled}>Click to Log in</button>
+
+          <div className="login-container">
+            {login.map((register) => {
+              if (!register) {
+                return <h3>Working on Finding Your Account</h3>;
+              }
+              return (
+                <div className="login-details">
+                  <h2>Your Login Was Successful!</h2>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </form>
     </div>
