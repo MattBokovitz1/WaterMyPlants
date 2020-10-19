@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import axios from "axios";
+import axiosWithAuth from "../../utils/axiosWithAuth";
 
 const initialFormValues = {
   plant: "",
@@ -9,9 +12,11 @@ const initialFormValues = {
 const dummyData = [
   {
     id: 1,
-    plant: "tree_1",
-    type: "big tree",
-    schedule: "weekly",
+    name: "tree_1",
+    location: "washington",
+    description: "big tree",
+    plantURL: "google.com",
+    userId: 1,
   },
   {
     id: 2,
@@ -30,6 +35,7 @@ const dummyData = [
 const MyPlants = () => {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [plantList, setPlantList] = useState(dummyData);
+  const history = useHistory();
 
   const handleChanges = (e) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
@@ -37,20 +43,28 @@ const MyPlants = () => {
 
   const addPlant = (e) => {
     e.preventDefault();
-    setPlantList([
-      ...plantList,
-      {
-        id: Date.now(),
-        plant: formValues.plant.trim(),
-        type: formValues.type.trim(),
-        schedule: formValues.schedule.trim(),
-      },
-    ]);
+    axios
+      .post("https://api-watermyplants.herokuapp.com/api/plants", formValues)
+      .then((res) => {
+        setPlantList(res.data);
+      })
+      .catch((err) => console.log(err));
     setFormValues(initialFormValues);
   };
 
+  // setPlantList([
+  //   ...plantList,
+  //   {
+  //     id: Date.now(),
+  //     name: formValues.plant.trim(),
+  //     location: formValues.type.trim(),
+  //     schedule: formValues.schedule.trim(),
+  //   },
+  // ]);
+
   const editPlant = (e) => {
     console.log("edit", e);
+    history.push(`/update-plant/${plantList.id}`);
   };
 
   const removePlant = (e) => {
@@ -90,23 +104,30 @@ const MyPlants = () => {
         <form onSubmit={addPlant}>
           <input
             type="text"
-            name="plant"
-            placeholder="Plant"
-            value={formValues.plant}
+            name="name"
+            placeholder="Name"
+            value={formValues.name}
             onChange={handleChanges}
           />
           <input
             type="text"
-            name="type"
-            placeholder="Type"
-            value={formValues.type}
+            name="location"
+            placeholder="Location"
+            value={formValues.location}
             onChange={handleChanges}
           />
           <input
             type="text"
-            name="schedule"
-            placeholder="Watering schedule"
-            value={formValues.schedule}
+            name="description"
+            placeholder="Description"
+            value={formValues.description}
+            onChange={handleChanges}
+          />
+          <input
+            type="text"
+            name="plantURL"
+            placeholder="Plant URL"
+            value={formValues.plantURL}
             onChange={handleChanges}
           />
           <button>Add Plant</button>
