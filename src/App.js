@@ -21,7 +21,7 @@ const App = () => {
           <Redirect exact from="/reload" to="/" />
           <PrivateRoute exact path="/" component={MyPlants} />
           <PrivateRoute exact path="/add-plant" component={AddPlant} />
-          <PrivateRoute path="/edit-plant/:id" component={EditPlant} />
+          <PrivateRoute exact path="/edit-plant/:id" component={EditPlant} />
         </Switch>
       </div>
     </AppProvider>
