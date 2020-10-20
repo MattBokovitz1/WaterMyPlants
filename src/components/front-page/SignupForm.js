@@ -109,7 +109,7 @@ export default function Form() {
         <br />
 
         <div className="form-container">
-          <Label>Username: </Label>
+          <Label></Label>
           <Input
             type="text"
             name="username"
@@ -118,7 +118,7 @@ export default function Form() {
             onChange={change}
           />
           <br />
-          <Label>First Name: </Label>
+          <Label></Label>
           <Input
             type="text"
             name="firstName"
@@ -127,7 +127,7 @@ export default function Form() {
             onChange={change}
           />
           <br />
-          <Label>Last Name: </Label>
+          <Label></Label>
           <Input
             type="text"
             name="lastName"
@@ -136,7 +136,7 @@ export default function Form() {
             onChange={change}
           />
           <br />
-          <Label>Phone Number: </Label>
+          <Label> </Label>
           <Input
             type="tel"
             name="phoneNumber"
@@ -145,7 +145,7 @@ export default function Form() {
             onChange={change}
           />
           <br />
-          <Label> Password: </Label>
+          <Label> </Label>
           <Input
             type="text"
             name="password"

@@ -87,25 +87,6 @@ export default function LoginForm() {
   //   });
   // }, [formValues]);
 
-  const Label = styled.label`
-    padding: 0.5% 0% 0.5% 0%;
-    font-size: 3rem;
-  `;
-
-  const Header = styled.h2`
-    font-size: 6rem;
-    padding: 0% 0% 5% 0%;
-  `;
-
-  const Input = styled.input`
-    font-size: 2rem;
-  `;
-
-  const Button = styled.button`
-    font-size: 3rem;
-    margin: 5% 0% 0% 0%;
-  `;
-
   return (
     <div>
       <Header>Login </Header>
@@ -117,7 +98,7 @@ export default function LoginForm() {
         <br />
 
         <div className="form-container">
-          <Label>Username: </Label>
+          <Label> </Label>
           <Input
             type="text"
             name="username"
@@ -126,7 +107,7 @@ export default function LoginForm() {
             onChange={change}
           />
           <br />
-          <Label>Password: </Label>
+          <Label></Label>
           <Input
             type="password"
             name="password"

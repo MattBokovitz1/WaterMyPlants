@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import axiosWithAuth from "../../utils/axiosWithAuth";
+import { Header } from "../../styles/styles";
+import { Button } from "../../styles/styles";
+import { H3 } from "../../styles/styles";
+import { Paragraph } from "../../styles/styles";
 
 const MyPlants = () => {
   const [plantList, setPlantList] = useState([]);
@@ -29,27 +33,27 @@ const MyPlants = () => {
   return (
     <>
       <div className="plant-card">
-        <h1>My Plants</h1>
+        <Header>My Plants</Header>
         <Link to={"/add-plant"}>
-          <button>New Plant</button>
+          <Button>New Plant</Button>
         </Link>
         {plantList.map((plant) => {
           return (
             <div key={plant.id} className="plant-details">
               <img src={plant.plantURL} alt="plant" width="50%" />
-              <h3>{plant.name}</h3>
-              <p>{plant.location}</p>
-              <p>{plant.description}</p>
+              <H3>{plant.name}</H3>
+              <Paragraph>{plant.location}</Paragraph>
+              <Paragraph>{plant.description}</Paragraph>
               <Link to={`/edit-plant/${plant.id}`}>
-                <button>Edit</button>
+                <Button>Edit</Button>
               </Link>
-              <button
+              <Button
                 onClick={() => {
                   removePlant(plant);
                 }}
               >
                 Delete
-              </button>
+              </Button>
             </div>
           );
         })}
