@@ -2,6 +2,12 @@ import React, { useState, useEffect } from "react";
 import axiosWithAuth from "../../utils/axiosWithAuth";
 import * as yup from "yup";
 import schema from "form-schema-validation";
+import "bootstrap/dist/css/bootstrap.min.css";
+import styled from "styled-components";
+import { Label } from "../../styles/styles";
+import { Header } from "../../styles/styles";
+import { Button } from "../../styles/styles";
+import { Input } from "../../styles/styles";
 
 const initialFormValues = {
   id: "",
@@ -91,7 +97,7 @@ export default function Form() {
 
   return (
     <div>
-      <h2>Register Here!</h2>
+      <Header>Register Here!</Header>
       <form onSubmit={submit}>
         <div className="errors-container">
           <div>{formErrors.username}</div>
@@ -103,54 +109,54 @@ export default function Form() {
         <br />
 
         <div className="form-container">
-          <label>Username: </label>
-          <input
+          <Label>Username: </Label>
+          <Input
             type="text"
             name="username"
-            placeholder="Enter Your Username"
+            placeholder="Enter Username"
             value={formValues.username}
             onChange={change}
           />
           <br />
-          <label>First Name: </label>
-          <input
+          <Label>First Name: </Label>
+          <Input
             type="text"
             name="firstName"
-            placeholder="Enter Your First Name"
+            placeholder="Enter First Name"
             value={formValues.firstName}
             onChange={change}
           />
           <br />
-          <label>Last Name: </label>
-          <input
+          <Label>Last Name: </Label>
+          <Input
             type="text"
             name="lastName"
-            placeholder="Enter Your Last Name"
+            placeholder="Enter Last Name"
             value={formValues.lastName}
             onChange={change}
           />
           <br />
-          <label>Phone Number: </label>
-          <input
+          <Label>Phone Number: </Label>
+          <Input
             type="tel"
             name="phoneNumber"
-            placeholder="Enter Your Phone Number"
+            placeholder="Enter Phone Number"
             value={formValues.phoneNumber}
             onChange={change}
           />
           <br />
-          <label> Password: </label>
-          <input
+          <Label> Password: </Label>
+          <Input
             type="text"
             name="password"
-            placeholder="Enter Your Password"
+            placeholder="Enter Password"
             value={formValues.password}
             onChange={change}
           />
           <br />
           <br />
           <br />
-          <button>Click to SignUp</button>
+          <Button>Click to Sign Up</Button>
 
           <div className="register-container">
             {registers.map((register) => {
