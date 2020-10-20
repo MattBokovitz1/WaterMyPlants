@@ -3,6 +3,12 @@ import { useHistory } from "react-router-dom";
 import axiosWithAuth from "../../utils/axiosWithAuth";
 import * as yup from "yup";
 import schema from "form-schema-validation";
+import "bootstrap/dist/css/bootstrap.min.css";
+import styled from "styled-components";
+import { Label } from "../../styles/styles";
+import { Header } from "../../styles/styles";
+import { Button } from "../../styles/styles";
+import { Input } from "../../styles/styles";
 
 const initialFormValues = {
   username: "",
@@ -81,9 +87,28 @@ export default function LoginForm() {
   //   });
   // }, [formValues]);
 
+  const Label = styled.label`
+    padding: 0.5% 0% 0.5% 0%;
+    font-size: 3rem;
+  `;
+
+  const Header = styled.h2`
+    font-size: 6rem;
+    padding: 0% 0% 5% 0%;
+  `;
+
+  const Input = styled.input`
+    font-size: 2rem;
+  `;
+
+  const Button = styled.button`
+    font-size: 3rem;
+    margin: 5% 0% 0% 0%;
+  `;
+
   return (
     <div>
-      <h1>Login Form</h1>
+      <Header>Login </Header>
       <form onSubmit={submit}>
         <div class>
           <div>{formErrors.username}</div>
@@ -92,8 +117,8 @@ export default function LoginForm() {
         <br />
 
         <div className="form-container">
-          <label>Username: </label>
-          <input
+          <Label>Username: </Label>
+          <Input
             type="text"
             name="username"
             placeholder="Enter Your Username"
@@ -101,8 +126,8 @@ export default function LoginForm() {
             onChange={change}
           />
           <br />
-          <label>Password: </label>
-          <input
+          <Label>Password: </Label>
+          <Input
             type="password"
             name="password"
             placeholder="Enter Your Password"
@@ -110,20 +135,7 @@ export default function LoginForm() {
             onChange={change}
           />
           <br />
-          <button>Click to Log in</button>
-
-          {/* <div className="login-container">
-            {login.map((register) => {
-              if (!register) {
-                return <h3>Working on Finding Your Account</h3>;
-              }
-              return (
-                <div className="login-details">
-                  <h2>Your Login Was Successful!</h2>
-                </div>
-              );
-            })}
-          </div> */}
+          <Button>Click to Log in</Button>
         </div>
       </form>
     </div>

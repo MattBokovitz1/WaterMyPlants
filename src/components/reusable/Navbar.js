@@ -1,12 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { NavigationDiv, Links } from "../../styles/styles";
 
-export default function NavBar() {
+function NavBar() {
   return (
-    <div className="NavBar">
-      <Link to="/">Home</Link>
-      <Link to="/login">Log In</Link>
-      <Link to="/signup">Sign Up</Link>
-    </div>
+    <NavigationDiv>
+      <Links to="/">Home</Links>
+      <Links to="/login">Log In</Links>
+      <Links to="/signup">Sign Up</Links>
+    </NavigationDiv>
   );
 }
+
+export default NavBar;
