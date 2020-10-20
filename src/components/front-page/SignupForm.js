@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import axiosWithAuth from "../../utils/axiosWithAuth";
 import * as yup from "yup";
 import schema from "form-schema-validation";
 
@@ -27,8 +27,8 @@ export default function Form() {
   const [disabled, setDisabled] = useState(true);
 
   const postNewRegister = (newRegister) => {
-    axios
-      .post("https://reqres.in/api/products", newRegister)
+    axiosWithAuth()
+      .post("/auth/register", newRegister)
       .then((newRegister) => {
         setRegisters([...registers, newRegister.data]);
         setFormValues(initialFormValues);
@@ -39,23 +39,23 @@ export default function Form() {
       });
   };
 
-  const validate = (name, value) => {
-    yup
-      .reach(schema, name)
-      .validate(value)
-      .then((valid) => {
-        setFormErrors({
-          ...formErrors,
-          [name]: "",
-        });
-      })
-      .catch((err) => {
-        setFormErrors({
-          ...formErrors,
-          [name]: err.errors[0],
-        });
-      });
-  };
+  // const validate = (name, value) => {
+  //   yup
+  //     .reach(schema, name)
+  //     .validate(value)
+  //     .then((valid) => {
+  //       setFormErrors({
+  //         ...formErrors,
+  //         [name]: "",
+  //       });
+  //     })
+  //     .catch((err) => {
+  //       setFormErrors({
+  //         ...formErrors,
+  //         [name]: err.errors[0],
+  //       });
+  //     });
+  // };
 
   const change = (evt) => {
     const { name, value, type, checked } = evt.target;
@@ -64,7 +64,7 @@ export default function Form() {
   };
 
   const inputChange = (name, value) => {
-    validate(name, value);
+    // validate(name, value)
     setFormValues({
       ...formValues,
       [name]: value,
@@ -150,7 +150,7 @@ export default function Form() {
           <br />
           <br />
           <br />
-          <button disabled={disabled}>Click to SignUp</button>
+          <button>Click to SignUp</button>
 
           <div className="register-container">
             {registers.map((register) => {

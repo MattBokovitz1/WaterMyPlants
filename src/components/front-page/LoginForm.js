@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { useHistory } from "react-router-dom";
+import axiosWithAuth from "../../utils/axiosWithAuth";
 import * as yup from "yup";
 import schema from "form-schema-validation";
 
@@ -18,13 +19,14 @@ export default function LoginForm() {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(true);
+  const history = useHistory();
 
   const postNewLogin = (newLogin) => {
-    axios
-      .post("https://reqres.in/api/products", newLogin)
-      .then((newLogin) => {
-        setLogin([...login, newLogin.data]);
-        setFormValues(initialFormValues);
+    axiosWithAuth()
+      .post("/auth/login", newLogin)
+      .then((res) => {
+        window.localStorage.setItem("token", res.data.payload);
+        history.push("/");
       })
       .catch((err) => {
         debugger;
@@ -67,7 +69,7 @@ export default function LoginForm() {
   const submit = (evt) => {
     evt.preventDefault();
     const newLogin = {
-      name: formValues.name.trim(),
+      username: formValues.username.trim(),
       password: formValues.password.trim(),
     };
     postNewLogin(newLogin);
@@ -90,27 +92,27 @@ export default function LoginForm() {
         <br />
 
         <div className="form-container">
-          <label>Username:</label>
+          <label>Username: </label>
           <input
             type="text"
             name="username"
             placeholder="Enter Your Username"
-            value={formValues.name}
+            value={formValues.username}
             onChange={change}
           />
           <br />
           <label>Password: </label>
           <input
-            type="text"
+            type="password"
             name="password"
             placeholder="Enter Your Password"
-            value={formValues.name}
+            value={formValues.password}
             onChange={change}
           />
           <br />
-          <button disabled={disabled}>Click to Log in</button>
+          <button>Click to Log in</button>
 
-          <div className="login-container">
+          {/* <div className="login-container">
             {login.map((register) => {
               if (!register) {
                 return <h3>Working on Finding Your Account</h3>;
@@ -121,7 +123,7 @@ export default function LoginForm() {
                 </div>
               );
             })}
-          </div>
+          </div> */}
         </div>
       </form>
     </div>
