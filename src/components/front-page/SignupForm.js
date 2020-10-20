@@ -3,11 +3,10 @@ import axiosWithAuth from "../../utils/axiosWithAuth";
 import * as yup from "yup";
 import schema from "form-schema-validation";
 import "bootstrap/dist/css/bootstrap.min.css";
-import styled from "styled-components";
-import { Label } from "../../styles/styles";
-import { Header } from "../../styles/styles";
-import { Button } from "../../styles/styles";
-import { Input } from "../../styles/styles";
+import { Label } from "../../styles/Styles";
+import { Header } from "../../styles/Styles";
+import { Button } from "../../styles/Styles";
+import { Input } from "../../styles/Styles";
 
 const initialFormValues = {
   id: "",
