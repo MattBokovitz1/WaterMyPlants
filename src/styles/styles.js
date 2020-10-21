@@ -8,9 +8,6 @@ export default {
   width: "75%",
 };
 
-//Nav
-//@850px
-
 export const Links = styled(Link)`
   padding: 0% 3% 0% 3%;
   text-decoration: none;
@@ -31,11 +28,6 @@ export const NavigationDiv = styled.div`
 `;
 
 //SignUp
-
-export const Label = styled.label`
-  padding: 0.5% 0% 0.5% 0%;
-  font-size: 2rem;
-`;
 
 export const Header = styled.h2`
   font-size: 3rem;

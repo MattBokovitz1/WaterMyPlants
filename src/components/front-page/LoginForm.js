@@ -105,10 +105,6 @@ export default function LoginForm() {
           [name]: err.errors[0],
         });
       });
-    // setFormValues({
-    //   ...formValues,
-    //   [name]: value,
-    // });
   };
 
   /* Each time the form value state is updated, check to see if it is valid per our schema.
