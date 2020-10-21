@@ -14,6 +14,7 @@ export default {
 export const Links = styled(Link)`
   padding: 0% 3% 0% 3%;
   text-decoration: none;
+  color: white;
 `;
 
 export const NavigationDiv = styled.div`
@@ -21,7 +22,7 @@ export const NavigationDiv = styled.div`
   padding: 2% 0% 2% 75%;
   font-size: 2.5rem;
   color: black;
-  background: white;
+  background: #8db596;
   text-decoration: none;
 `;
 
@@ -35,7 +36,7 @@ export const Label = styled.label`
 export const Header = styled.h2`
   font-size: 6rem;
   padding: 0% 0% 3% 0%;
-  color: " #bedbbb ";
+  color: #92817a;
 `;
 
 export const Input = styled.input`
@@ -47,15 +48,19 @@ export const Input = styled.input`
 
 export const Button = styled.button`
   font-size: 3rem;
-  margin: 2% 0% 0% 0%;
+  margin: 1% 0% 0% 0%;
 `;
+
+// export const
 
 //MyPlants
 
 export const H3 = styled.h3`
   font-size: 3rem;
+  color: white;
 `;
 
 export const Paragraph = styled.p`
-  font-size: 2rem;
+  font-size: 2.5rem;
+  color: white;
 `;

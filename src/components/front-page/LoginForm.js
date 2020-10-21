@@ -2,9 +2,9 @@ import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { AppContext } from "../main-app/AppContext";
 import axiosWithAuth from "../../utils/axiosWithAuth";
+import axios from "axios";
 import * as yup from "yup";
 import schema from "form-schema-validation";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { Label } from "../../styles/Styles";
 import { Header } from "../../styles/Styles";
 import { Button } from "../../styles/Styles";
@@ -25,6 +25,7 @@ export default function LoginForm() {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(true);
+  const [quotes, setQuotes] = useState([]);
   const [userId, setUserId] = useContext(AppContext);
   const history = useHistory();
 
@@ -33,7 +34,7 @@ export default function LoginForm() {
       .post("/auth/login", newLogin)
       .then((res) => {
         window.localStorage.setItem("token", res.data.token);
-        setUserId(res.data.user.id);
+        // setUserId(res.data.user.id);
         history.push("/");
       })
       .catch((err) => {
@@ -41,6 +42,20 @@ export default function LoginForm() {
         console.log(err);
       });
   };
+
+  const fetchQuote = () => {
+    axios
+      .get("https://quotes.rest/qod?language=en")
+      .then((res) => {
+        setQuotes(res.data.contents.quotes);
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    fetchQuote();
+  }, []);
 
   const validate = (name, value) => {
     yup
@@ -91,7 +106,6 @@ export default function LoginForm() {
 
   return (
     <div>
-      <Header>Login </Header>
       <form onSubmit={submit}>
         <div class>
           <div>{formErrors.username}</div>
@@ -100,6 +114,7 @@ export default function LoginForm() {
         <br />
 
         <div className="form-container">
+          <Header>Login</Header>
           <Label> </Label>
           <Input
             type="text"
@@ -119,6 +134,28 @@ export default function LoginForm() {
           />
           <br />
           <Button>Click to Log in</Button>
+
+          {quotes.map((quote) => {
+            return (
+              <div key={quote.id}>
+                <p>"{quote.quote}"</p>
+                <p>{quote.author}</p>
+              </div>
+            );
+          })}
+
+          {/* <div className="login-container">
+            {login.map((register) => {
+              if (!register) {
+                return <h3>Working on Finding Your Account</h3>;
+              }
+              return (
+                <div className="login-details">
+                  <h2>Your Login Was Successful!</h2>
+                </div>
+              );
+            })}
+          </div> */}
         </div>
       </form>
     </div>
