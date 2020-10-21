@@ -1,6 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { NavigationDiv, Links } from "../../styles/Styles";
+import { NavigationDiv, Links } from "../../styles/StyledComponents";
 
 function NavBar() {
   return (
