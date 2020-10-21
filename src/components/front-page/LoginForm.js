@@ -3,8 +3,6 @@ import { useHistory } from "react-router-dom";
 import axiosWithAuth from "../../utils/axiosWithAuth";
 import * as yup from "yup";
 import schema from "form-schema-validation";
-import "bootstrap/dist/css/bootstrap.min.css";
-import styled from "styled-components";
 import { Label } from "../../styles/styles";
 import { Header } from "../../styles/styles";
 import { Button } from "../../styles/styles";
@@ -89,7 +87,6 @@ export default function LoginForm() {
 
   return (
     <div>
-      <Header>Login </Header>
       <form onSubmit={submit}>
         <div class>
           <div>{formErrors.username}</div>
@@ -98,6 +95,7 @@ export default function LoginForm() {
         <br />
 
         <div className="form-container">
+          <Header>Login</Header>
           <Label> </Label>
           <Input
             type="text"
@@ -117,10 +115,21 @@ export default function LoginForm() {
           />
           <br />
           <Button>Click to Log in</Button>
+
+          {/* <div className="login-container">
+            {login.map((register) => {
+              if (!register) {
+                return <h3>Working on Finding Your Account</h3>;
+              }
+              return (
+                <div className="login-details">
+                  <h2>Your Login Was Successful!</h2>
+                </div>
+              );
+            })}
+          </div> */}
         </div>
       </form>
     </div>
   );
 }
-
-//Test

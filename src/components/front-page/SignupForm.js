@@ -97,7 +97,6 @@ export default function Form() {
 
   return (
     <div>
-      <Header>Register Here!</Header>
       <form onSubmit={submit}>
         <div className="errors-container">
           <div>{formErrors.username}</div>
@@ -109,6 +108,7 @@ export default function Form() {
         <br />
 
         <div className="form-container">
+          <Header>Register Here!</Header>
           <Label></Label>
           <Input
             type="text"
