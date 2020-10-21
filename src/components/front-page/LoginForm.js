@@ -4,7 +4,12 @@ import { useHistory } from "react-router-dom";
 import axiosWithAuth from "../../utils/axiosWithAuth";
 import axios from "axios";
 import * as yup from "yup";
-import { Paragraph, Header, Button, Input } from "../../styles/Styles";
+import {
+  Paragraph,
+  Header,
+  Button,
+  Input,
+} from "../../styles/StyledComponents";
 
 const initialFormValues = {
   username: "",
@@ -18,7 +23,7 @@ const initialFormErrors = {
 
 export default function LoginForm() {
   // const [login, setLogin] = useState([]);
-  const [formValues, setFormValues] = useState({ initialFormValues });
+  const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(true);
   const [quotes, setQuotes] = useState([]);
@@ -70,7 +75,6 @@ export default function LoginForm() {
       .get("https://quotes.rest/qod?language=en")
       .then((res) => {
         setQuotes(res.data.contents.quotes);
-        console.log(res);
       })
       .catch((err) => console.log(err));
   };
@@ -105,22 +109,13 @@ export default function LoginForm() {
           [name]: err.errors[0],
         });
       });
-    // setFormValues({
-    //   ...formValues,
-    //   [name]: value,
-    // });
   };
 
-  /* Each time the form value state is updated, check to see if it is valid per our schema.
-  This will allow us to enable/disable the submit button.*/
   useEffect(() => {
-    /* We pass the entire state into the entire schema, no need to use reach here.
-    We want to make sure it is all valid before we allow a user to submit
-    isValid comes from Yup directly */
     formSchema.isValid(formValues).then((valid) => {
       setDisabled(!valid);
     });
-  }, [formValues]);
+  });
 
   return (
     <div>

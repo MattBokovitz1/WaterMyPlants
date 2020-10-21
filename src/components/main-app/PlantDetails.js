@@ -1,9 +1,7 @@
 import React from "react";
 import { useHistory, Link } from "react-router-dom";
 import axiosWithAuth from "../../utils/axiosWithAuth";
-import { H3 } from "../../styles/Styles";
-import { Button } from "../../styles/Styles";
-import { Paragraph } from "../../styles/Styles";
+import { H3, Button, Paragraph } from "../../styles/StyledComponents";
 
 const PlantDetails = ({ plant }) => {
   const history = useHistory();

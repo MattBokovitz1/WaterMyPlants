@@ -9,7 +9,6 @@ export default {
 };
 
 //Nav
-//@850px
 
 export const Links = styled(Link)`
   padding: 0% 3% 0% 3%;
