@@ -27,8 +27,8 @@ code {
 .plant-form {
   background-color: #bedbbb;
   width: 50%;
-  margin: 5% 25% 0 25%;
-  padding: 5% 0 5% 0;
+  margin: 2% 25% 2% 25%;
+  padding: 0% 0 0% 0;
   align-items: center;
   align-content: center;
   border-radius: 10%;
@@ -41,22 +41,25 @@ code {
 }
 
 .plant-details button {
-  margin: 2%;
+  margin: 0%;
+  background: aquamarine;
 }
 .plant-card {
   background-color: #bedbbb;
   width: 60%;
-  margin: 0 20% 0 20%;
+  margin: 2% 20% 2% 20%;
   align-content: center;
   align-items: center;
-  padding-bottom: 5%;
+  padding-bottom: 2%;
+  border-radius: 10%;
+  padding: 1% 0 1% 0;
 }
 
 .form-container {
   background-color: #bedbbb;
   width: 50%;
-  margin: 0% 25% 0% 25%;
-  padding: 5% 0 5% 0%;
+  margin: 2% 25% 2% 25%;
+  padding: 2% 0 2% 0%;
   align-items: center;
   align-content: center;
   border-radius: 10%;

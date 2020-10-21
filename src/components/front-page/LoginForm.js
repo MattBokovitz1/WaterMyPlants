@@ -1,14 +1,10 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { AppContext } from "../main-app/AppContext";
+
 import axiosWithAuth from "../../utils/axiosWithAuth";
 import axios from "axios";
 import * as yup from "yup";
-import schema from "form-schema-validation";
-import { Label } from "../../styles/Styles";
-import { Header } from "../../styles/Styles";
-import { Button } from "../../styles/Styles";
-import { Input } from "../../styles/Styles";
+import { Paragraph, Header, Button, Input } from "../../styles/Styles";
 
 const initialFormValues = {
   username: "",
@@ -21,14 +17,15 @@ const initialFormErrors = {
 };
 
 export default function LoginForm() {
-  const [login, setLogin] = useState([]);
-  const [formValues, setFormValues] = useState(initialFormValues);
+  // const [login, setLogin] = useState([]);
+  const [formValues, setFormValues] = useState({ initialFormValues });
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(true);
   const [quotes, setQuotes] = useState([]);
-  const [userId, setUserId] = useContext(AppContext);
+  // const [userId, setUserId] = useContext(AppContext);
   const history = useHistory();
 
+  // Login
   const postNewLogin = (newLogin) => {
     axiosWithAuth()
       .post("/auth/login", newLogin)
@@ -43,38 +40,6 @@ export default function LoginForm() {
       });
   };
 
-  const fetchQuote = () => {
-    axios
-      .get("https://quotes.rest/qod?language=en")
-      .then((res) => {
-        setQuotes(res.data.contents.quotes);
-        console.log(res);
-      })
-      .catch((err) => console.log(err));
-  };
-
-  useEffect(() => {
-    fetchQuote();
-  }, []);
-
-  const validate = (name, value) => {
-    yup
-      .reach(schema, name)
-      .validate(value)
-      .then((valid) => {
-        setFormErrors({
-          ...formErrors,
-          [name]: "",
-        });
-      })
-      .catch((err) => {
-        setFormErrors({
-          ...formErrors,
-          [name]: err.errors[0],
-        });
-      });
-  };
-
   const change = (evt) => {
     const { name, value, type, checked } = evt.target;
     const valueToUse = type === "checkbox" ? checked : value;
@@ -82,7 +47,7 @@ export default function LoginForm() {
   };
 
   const inputChange = (name, value) => {
-    // validate(name, value);
+    validate(name, value);
     setFormValues({
       ...formValues,
       [name]: value,
@@ -98,24 +63,71 @@ export default function LoginForm() {
     postNewLogin(newLogin);
   };
 
-  // useEffect(() => {
-  //   schema.isValid(formValues).then((valid) => {
-  //     setDisabled(!valid);
-  //   });
-  // }, [formValues]);
+  //Fetch Quote
+
+  const fetchQuote = () => {
+    axios
+      .get("https://quotes.rest/qod?language=en")
+      .then((res) => {
+        setQuotes(res.data.contents.quotes);
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    fetchQuote();
+  }, []);
+
+  //Form Validation
+
+  const formSchema = yup.object().shape({
+    username: yup.string().required("Must include username."),
+    password: yup
+      .string()
+      .required("Password is Required")
+      .min(4, "Passwords must be at least 4 characters long."),
+  });
+
+  const validate = (name, value) => {
+    yup
+      .reach(formSchema, name)
+      .validate(value)
+      .then((valid) => {
+        setFormErrors({
+          ...formErrors,
+          [name]: "",
+        });
+      })
+      .catch((err) => {
+        setFormErrors({
+          ...formErrors,
+          [name]: err.errors[0],
+        });
+      });
+    // setFormValues({
+    //   ...formValues,
+    //   [name]: value,
+    // });
+  };
+
+  /* Each time the form value state is updated, check to see if it is valid per our schema.
+  This will allow us to enable/disable the submit button.*/
+  useEffect(() => {
+    /* We pass the entire state into the entire schema, no need to use reach here.
+    We want to make sure it is all valid before we allow a user to submit
+    isValid comes from Yup directly */
+    formSchema.isValid(formValues).then((valid) => {
+      setDisabled(!valid);
+    });
+  }, [formValues]);
 
   return (
     <div>
       <form onSubmit={submit}>
-        <div class>
-          <div>{formErrors.username}</div>
-          <div>{formErrors.password}</div>
-        </div>
-        <br />
-
         <div className="form-container">
           <Header>Login</Header>
-          <Label> </Label>
+
           <Input
             type="text"
             name="username"
@@ -124,7 +136,7 @@ export default function LoginForm() {
             onChange={change}
           />
           <br />
-          <Label></Label>
+
           <Input
             type="password"
             name="password"
@@ -133,29 +145,21 @@ export default function LoginForm() {
             onChange={change}
           />
           <br />
-          <Button>Click to Log in</Button>
+          <div className="errors-container">
+            <Paragraph>{formErrors.username}</Paragraph>
+            <Paragraph>{formErrors.password}</Paragraph>
+          </div>
+          <br />
+          <Button disabled={disabled}>Click to Log in</Button>
 
           {quotes.map((quote) => {
             return (
               <div key={quote.id}>
-                <p>"{quote.quote}"</p>
-                <p>{quote.author}</p>
+                <Paragraph>"{quote.quote}"</Paragraph>
+                <Paragraph>{quote.author}</Paragraph>
               </div>
             );
           })}
-
-          {/* <div className="login-container">
-            {login.map((register) => {
-              if (!register) {
-                return <h3>Working on Finding Your Account</h3>;
-              }
-              return (
-                <div className="login-details">
-                  <h2>Your Login Was Successful!</h2>
-                </div>
-              );
-            })}
-          </div> */}
         </div>
       </form>
     </div>
