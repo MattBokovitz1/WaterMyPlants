@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axiosWithAuth from "../../utils/axiosWithAuth";
 import * as yup from "yup";
-import schema from "form-schema-validation";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Label } from "../../styles/Styles";
-import { Header } from "../../styles/Styles";
-import { Button } from "../../styles/Styles";
-import { Input } from "../../styles/Styles";
+import { Paragraph, Header, Button, Input } from "../../styles/Styles";
 
 const initialFormValues = {
   id: "",
@@ -44,23 +40,40 @@ export default function Form() {
       });
   };
 
-  // const validate = (name, value) => {
-  //   yup
-  //     .reach(schema, name)
-  //     .validate(value)
-  //     .then((valid) => {
-  //       setFormErrors({
-  //         ...formErrors,
-  //         [name]: "",
-  //       });
-  //     })
-  //     .catch((err) => {
-  //       setFormErrors({
-  //         ...formErrors,
-  //         [name]: err.errors[0],
-  //       });
-  //     });
-  // };
+  const formSchema = yup.object().shape({
+    username: yup.string().required("Must include username."),
+    firstName: yup
+      .string()
+      .required("Must include First name")
+      .min(2, "First Name must be at least 2 characters long"),
+    lastName: yup.string().required("Must include Last Name"),
+    phoneNumber: yup
+      .string()
+      .required("Must include Phone Number")
+      .min(10, "Phone number must be at least 10 digits"),
+    password: yup
+      .string()
+      .required("Password is Required")
+      .min(4, "Passwords must be at least 4 characters long."),
+  });
+
+  const validate = (name, value) => {
+    yup
+      .reach(formSchema, name)
+      .validate(value)
+      .then((valid) => {
+        setFormErrors({
+          ...formErrors,
+          [name]: "",
+        });
+      })
+      .catch((err) => {
+        setFormErrors({
+          ...formErrors,
+          [name]: err.errors[0],
+        });
+      });
+  };
 
   const change = (evt) => {
     const { name, value, type, checked } = evt.target;
@@ -69,7 +82,7 @@ export default function Form() {
   };
 
   const inputChange = (name, value) => {
-    // validate(name, value)
+    validate(name, value);
     setFormValues({
       ...formValues,
       [name]: value,
@@ -88,27 +101,23 @@ export default function Form() {
     postNewRegister(newRegister);
   };
 
-  // useEffect(() => {
-  //   schema.isValid(formValues).then((valid) => {
-  //     setDisabled(!valid);
-  //   });
-  // }, [formValues]);
+  /* Each time the form value state is updated, check to see if it is valid per our schema.
+  This will allow us to enable/disable the submit button.*/
+  useEffect(() => {
+    /* We pass the entire state into the entire schema, no need to use reach here.
+    We want to make sure it is all valid before we allow a user to submit
+    isValid comes from Yup directly */
+    formSchema.isValid(formValues).then((valid) => {
+      setDisabled(!valid);
+    });
+  }, [formValues]);
 
   return (
     <div>
       <form onSubmit={submit}>
-        <div className="errors-container">
-          <div>{formErrors.username}</div>
-          <div>{formErrors.firstName}</div>
-          <div>{formErrors.lastName}</div>
-          <div>{formErrors.phoneNumber}</div>
-          <div>{formErrors.password}</div>
-        </div>
-        <br />
-
         <div className="form-container">
           <Header>Register Here!</Header>
-          <Label></Label>
+
           <Input
             type="text"
             name="username"
@@ -117,7 +126,7 @@ export default function Form() {
             onChange={change}
           />
           <br />
-          <Label></Label>
+
           <Input
             type="text"
             name="firstName"
@@ -126,7 +135,7 @@ export default function Form() {
             onChange={change}
           />
           <br />
-          <Label></Label>
+
           <Input
             type="text"
             name="lastName"
@@ -135,7 +144,7 @@ export default function Form() {
             onChange={change}
           />
           <br />
-          <Label> </Label>
+
           <Input
             type="tel"
             name="phoneNumber"
@@ -144,7 +153,7 @@ export default function Form() {
             onChange={change}
           />
           <br />
-          <Label> </Label>
+
           <Input
             type="text"
             name="password"
@@ -155,7 +164,16 @@ export default function Form() {
           <br />
           <br />
           <br />
-          <Button>Click to Sign Up</Button>
+          <div className="errors-container">
+            <Paragraph>{formErrors.username}</Paragraph>
+            <Paragraph>{formErrors.firstName}</Paragraph>
+            <Paragraph>{formErrors.lastName}</Paragraph>
+            <Paragraph>{formErrors.phoneNumber}</Paragraph>
+            <Paragraph>{formErrors.password}</Paragraph>
+          </div>
+          <br />
+
+          <Button disabled={disabled}>Click to Sign Up</Button>
 
           <div className="register-container">
             {registers.map((register) => {

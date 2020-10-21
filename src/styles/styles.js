@@ -18,37 +18,41 @@ export const Links = styled(Link)`
 `;
 
 export const NavigationDiv = styled.div`
+  display: flex;
   width: 100%;
-  padding: 2% 0% 2% 75%;
-  font-size: 2.5rem;
+  padding: 2% 0% 2% 70%;
+  font-size: 1.5rem;
   color: black;
   background: #8db596;
   text-decoration: none;
+
+  @media (max-width: 800px) {
+  }
 `;
 
 //SignUp
 
 export const Label = styled.label`
   padding: 0.5% 0% 0.5% 0%;
-  font-size: 3rem;
+  font-size: 2rem;
 `;
 
 export const Header = styled.h2`
-  font-size: 6rem;
-  padding: 0% 0% 3% 0%;
+  font-size: 3rem;
+  padding: 0% 0% 1% 0%;
   color: #92817a;
 `;
 
 export const Input = styled.input`
-  font-size: 2rem;
-  margin: 0.75% 0% 0.75% 0%;
+  font-size: 1rem;
+  margin: 0.5% 0% 0.5% 0%;
 `;
 
 //Login
 
 export const Button = styled.button`
-  font-size: 3rem;
-  margin: 1% 0% 0% 0%;
+  font-size: 1rem;
+  margin: 0.5% 0% 5% 0%;
 `;
 
 // export const
@@ -56,11 +60,12 @@ export const Button = styled.button`
 //MyPlants
 
 export const H3 = styled.h3`
-  font-size: 3rem;
+  font-size: 2rem;
   color: white;
 `;
 
 export const Paragraph = styled.p`
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   color: white;
+  padding: 0% 1% 0 0.5%;
 `;
