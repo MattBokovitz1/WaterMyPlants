@@ -2,7 +2,7 @@ import React from "react";
 import "./styles/App.css";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { AppProvider } from "./components/main-app/AppContext";
-import NavBar from "./components/reusable/Navbar";
+import NavBar from "./components/main-app/Navbar";
 import LoginForm from "./components/front-page/LoginForm";
 import SignupForm from "./components/front-page/SignupForm";
 import MyPlants from "./components/main-app/MyPlants";

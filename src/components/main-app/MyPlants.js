@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { AppContext } from "./AppContext";
 import axiosWithAuth from "../../utils/axiosWithAuth";
-import { Header, Button } from "../../styles/Styles";
+import { Header, Button } from "../../styles/StyledComponents";
 import PlantDetails from "./PlantDetails";
 
 const MyPlants = () => {

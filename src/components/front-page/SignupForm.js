@@ -2,7 +2,12 @@ import React, { useState, useEffect } from "react";
 import axiosWithAuth from "../../utils/axiosWithAuth";
 import * as yup from "yup";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Paragraph, Header, Button, Input } from "../../styles/Styles";
+import {
+  Paragraph,
+  Header,
+  Button,
+  Input,
+} from "../../styles/StyledComponents";
 
 const initialFormValues = {
   id: "",
@@ -110,7 +115,7 @@ export default function Form() {
     formSchema.isValid(formValues).then((valid) => {
       setDisabled(!valid);
     });
-  }, [formValues]);
+  });
 
   return (
     <div>

@@ -8,6 +8,8 @@ export default {
   width: "75%",
 };
 
+//Nav
+
 export const Links = styled(Link)`
   padding: 0% 3% 0% 3%;
   text-decoration: none;

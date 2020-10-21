@@ -56,6 +56,11 @@ code {
   padding: 1% 0 1% 0;
 }
 
+.plant-card img {
+  width: 60%;
+  margin: 2%;
+}
+
 .form-container {
   background-color: #bedbbb;
   width: 50%;
