@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
+import { AppContext } from "../main-app/AppContext";
 import axiosWithAuth from "../../utils/axiosWithAuth";
+import axios from "axios";
 import * as yup from "yup";
 import schema from "form-schema-validation";
-import { Label } from "../../styles/styles";
-import { Header } from "../../styles/styles";
-import { Button } from "../../styles/styles";
-import { Input } from "../../styles/styles";
+import { Label } from "../../styles/Styles";
+import { Header } from "../../styles/Styles";
+import { Button } from "../../styles/Styles";
+import { Input } from "../../styles/Styles";
 
 const initialFormValues = {
   username: "",
@@ -23,13 +25,16 @@ export default function LoginForm() {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(true);
+  const [quotes, setQuotes] = useState([]);
+  const [userId, setUserId] = useContext(AppContext);
   const history = useHistory();
 
   const postNewLogin = (newLogin) => {
     axiosWithAuth()
       .post("/auth/login", newLogin)
       .then((res) => {
-        window.localStorage.setItem("token", res.data.payload);
+        window.localStorage.setItem("token", res.data.token);
+        // setUserId(res.data.user.id);
         history.push("/");
       })
       .catch((err) => {
@@ -37,6 +42,20 @@ export default function LoginForm() {
         console.log(err);
       });
   };
+
+  const fetchQuote = () => {
+    axios
+      .get("https://quotes.rest/qod?language=en")
+      .then((res) => {
+        setQuotes(res.data.contents.quotes);
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    fetchQuote();
+  }, []);
 
   const validate = (name, value) => {
     yup
@@ -115,6 +134,15 @@ export default function LoginForm() {
           />
           <br />
           <Button>Click to Log in</Button>
+
+          {quotes.map((quote) => {
+            return (
+              <div key={quote.id}>
+                <p>"{quote.quote}"</p>
+                <p>{quote.author}</p>
+              </div>
+            );
+          })}
 
           {/* <div className="login-container">
             {login.map((register) => {

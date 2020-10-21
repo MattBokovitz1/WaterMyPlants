@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import axiosWithAuth from "../../utils/axiosWithAuth";
-import { Input } from "../../styles/styles";
-import { Header } from "../../styles/styles";
-import { Button } from "../../styles/styles";
+import { Input } from "../../styles/Styles";
+import { Header } from "../../styles/Styles";
+import { Button } from "../../styles/Styles";
 
 const initialFormValues = {
   name: "",
