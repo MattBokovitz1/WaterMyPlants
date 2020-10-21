@@ -14,19 +14,27 @@ export const Links = styled(Link)`
   color: white;
 `;
 
+export const Nav = styled.nav`
+  display: flex;
+  background: #8db596;
+`;
+
 export const NavigationDiv = styled.div`
   display: flex;
   width: 100%;
-  padding: 2% 0% 2% 70%;
+  padding: 2% 5% 2% 70%;
   font-size: 1.5rem;
   color: black;
-  background: #8db596;
   text-decoration: none;
 
   @media (max-width: 800px) {
   }
 `;
 
+export const Logo = styled.div`
+  display: flex;
+  padding: 2% 5% 2% 5%;
+`;
 //SignUp
 
 export const Header = styled.h2`
