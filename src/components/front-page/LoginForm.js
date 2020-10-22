@@ -9,6 +9,7 @@ import {
   Header,
   Button,
   Input,
+  Quote,
 } from "../../styles/StyledComponents";
 
 const initialFormValues = {
@@ -149,10 +150,12 @@ export default function LoginForm() {
 
           {quotes.map((quote) => {
             return (
-              <div key={quote.id}>
-                <Paragraph>"{quote.quote}"</Paragraph>
-                <Paragraph>{quote.author}</Paragraph>
-              </div>
+              <Quote>
+                <div key={quote.id}>
+                  <Paragraph>"{quote.quote}"</Paragraph>
+                  <Paragraph>{quote.author}</Paragraph>
+                </div>
+              </Quote>
             );
           })}
         </div>

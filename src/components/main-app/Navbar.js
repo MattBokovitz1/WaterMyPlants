@@ -1,19 +1,21 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { NavigationDiv, Links, Nav, Logo } from "../../styles/StyledComponents";
+import plantLogo from "../../styles/plantLogo.png";
+import { LinksDiv, Links, Nav, Logo, H1 } from "../../styles/StyledComponents";
 
 function NavBar() {
   return (
     <Nav>
       <Logo>
         <Links to="/">
-          <img src="../../styles/logo" alt="logo" />
+          <img src={plantLogo} alt="logo" width="50%" />
         </Links>
       </Logo>
-      <NavigationDiv>
+      <H1>Water My Plants</H1>
+      <LinksDiv>
         <Links to="/login">Log In</Links>
         <Links to="/signup">Sign Up</Links>
-      </NavigationDiv>
+      </LinksDiv>
     </Nav>
   );
 }
