@@ -7,11 +7,9 @@ import PlantDetails from "./PlantDetails";
 
 const MyPlants = () => {
   const [plantList, setPlantList] = useContext(AppContext);
-  // const [userId] = useContext(AppContext);
 
   const fetchPlants = () => {
     axiosWithAuth()
-      // .get(`/api/plants/${userId}`)
       .get(`/api/plants`)
       .then((res) => setPlantList(res.data))
       .catch((err) => console.log(err));

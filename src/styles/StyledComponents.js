@@ -33,7 +33,6 @@ export const LinksDiv = styled.div`
   color: black;
 
   @media (max-width: 500px) {
-    font-size: 0.5rem;
     width: 50%;
   }
 `;
