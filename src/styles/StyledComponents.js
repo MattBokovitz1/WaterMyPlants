@@ -63,6 +63,9 @@ export const Header = styled.h2`
 export const Input = styled.input`
   font-size: 1rem;
   margin: 0.5% 0% 0.5% 0%;
+  @media (max-width: 450px) {
+    font-size: 0.5rem;
+  }
 `;
 
 //Login
