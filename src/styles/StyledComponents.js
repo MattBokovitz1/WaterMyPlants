@@ -11,31 +11,46 @@ export default {
 //Nav
 
 export const Links = styled(Link)`
-  padding: 0% 3% 0% 3%;
   text-decoration: none;
   color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
 `;
 
 export const Nav = styled.nav`
   display: flex;
+  justify-content: space-between;
   background: #8db596;
 `;
 
-export const NavigationDiv = styled.div`
+export const LinksDiv = styled.div`
   display: flex;
-  width: 100%;
-  padding: 2% 5% 2% 70%;
-  font-size: 1.5rem;
+  justify-content: space-around;
+  width: 15%;
+  font-size: 1rem;
   color: black;
-  text-decoration: none;
 
-  @media (max-width: 800px) {
+  @media (max-width: 500px) {
+    font-size: 0.5rem;
+    width: 50%;
+  }
+`;
+
+export const H1 = styled.h1`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  @media (max-width: 500px) {
+    display: none;
   }
 `;
 
 export const Logo = styled.div`
   display: flex;
-  padding: 2% 5% 2% 5%;
+  width: 15%;
 `;
 //SignUp
 
@@ -70,4 +85,12 @@ export const Paragraph = styled.p`
   font-size: 1.5rem;
   color: white;
   padding: 0% 1% 0 0.5%;
+`;
+
+//Login Form
+
+export const Quote = styled.div`
+  @media (max-width: 450px) {
+    display: none;
+  }
 `;
