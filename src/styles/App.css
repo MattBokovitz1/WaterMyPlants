@@ -7,6 +7,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-image: url("https://images.unsplash.com/photo-1527451668186-d17acdb68207?ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80");
 }
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -19,25 +20,18 @@ code {
 .plant-details {
   width: 50%;
   margin: 2% auto;
-  border: 2px solid #696969;
-  background-color: #92817a;
-  border-radius: 5%;
   padding: 2% 0 2% 0;
-  @media (max-width: 500px) {
-  }
+  border: 2px solid #696969;
+  border-radius: 5%;
+  background-color: #92817a;
 }
 
 .plant-form {
-  background-color: #bedbbb;
   width: 50%;
   margin: 3% 25% 3% 25%;
   padding: 0% 0 0% 0;
-  align-items: center;
-  align-content: center;
   border-radius: 10%;
-  @media (max-width: 500px) {
-    width: 75%;
-  }
+  background-color: #bedbbb;
 }
 
 .plant-form input {
@@ -51,39 +45,44 @@ code {
   background: aquamarine;
 }
 .plant-card {
-  background-color: #bedbbb;
   width: 50%;
   margin: 8% 25% 2% 25%;
-  align-content: center;
-  align-items: center;
+  padding: 1% 0 1% 0;
   padding-bottom: 2%;
   border-radius: 10%;
-  padding: 1% 0 1% 0;
-  @media (max-width: 500px) {
-    width: 100%;
-    margin: 0;
-    padding: ;
-  }
+  background-color: #bedbbb;
 }
 
 .plant-card img {
-  width: 60%;
-  margin: 2%;
-  @media (max-width: 500px) {
-    width: 80%;
-  }
+  width: 70%;
+  margin: 2% auto;
 }
 
 .form-container {
-  background-color: #bedbbb;
   width: 50%;
   margin: 8% 25% 2% 25%;
   padding: 2% 3% 2% 3%;
-  align-items: center;
-  align-content: center;
   border-radius: 10%;
-  @media (max-width: 500px) {
+  background-color: #bedbbb;
+}
+
+@media (max-width: 500px) {
+  .plant-form {
     width: 75%;
-    margin: 2% 5% 2% 5%;
+    margin: 13% auto;
+  }
+
+  .plant-card {
+    width: 75%;
+    margin: 13% auto;
+  }
+
+  .plant-details {
+    width: 75%;
+  }
+
+  .form-container {
+    width: 75%;
+    margin: 13% auto;
   }
 }

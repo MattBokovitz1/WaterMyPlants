@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-
 import axiosWithAuth from "../../utils/axiosWithAuth";
 import axios from "axios";
 import * as yup from "yup";
@@ -23,21 +22,19 @@ const initialFormErrors = {
 };
 
 export default function LoginForm() {
-  // const [login, setLogin] = useState([]);
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(true);
   const [quotes, setQuotes] = useState([]);
-  // const [userId, setUserId] = useContext(AppContext);
   const history = useHistory();
 
   // Login
+
   const postNewLogin = (newLogin) => {
     axiosWithAuth()
       .post("/auth/login", newLogin)
       .then((res) => {
         window.localStorage.setItem("token", res.data.token);
-        // setUserId(res.data.user.id);
         history.push("/");
       })
       .catch((err) => {
@@ -69,7 +66,7 @@ export default function LoginForm() {
     postNewLogin(newLogin);
   };
 
-  //Fetch Quote
+  // Fetch Quote
 
   const fetchQuote = () => {
     axios
@@ -84,7 +81,7 @@ export default function LoginForm() {
     fetchQuote();
   }, []);
 
-  //Form Validation
+  // Form Validation
 
   const formSchema = yup.object().shape({
     username: yup.string().required("Must include username."),
@@ -141,12 +138,14 @@ export default function LoginForm() {
             onChange={change}
           />
           <br />
+
           <div className="errors-container">
             <Paragraph>{formErrors.username}</Paragraph>
             <Paragraph>{formErrors.password}</Paragraph>
           </div>
           <br />
-          <Button disabled={disabled}>Click to Log in</Button>
+
+          <Button disabled={disabled}>Click to Log In</Button>
 
           {quotes.map((quote) => {
             return (

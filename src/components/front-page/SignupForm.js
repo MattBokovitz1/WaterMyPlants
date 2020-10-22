@@ -45,6 +45,32 @@ export default function Form() {
       });
   };
 
+  const change = (evt) => {
+    const { name, value, type, checked } = evt.target;
+    const valueToUse = type === "checkbox" ? checked : value;
+    inputChange(name, valueToUse);
+  };
+
+  const inputChange = (name, value) => {
+    validate(name, value);
+    setFormValues({
+      ...formValues,
+      [name]: value,
+    });
+  };
+
+  const submit = (evt) => {
+    evt.preventDefault();
+    const newRegister = {
+      username: formValues.username.trim(),
+      firstName: formValues.firstName.trim(),
+      lastName: formValues.lastName.trim(),
+      phoneNumber: formValues.phoneNumber.trim(),
+      password: formValues.password.trim(),
+    };
+    postNewRegister(newRegister);
+  };
+
   const formSchema = yup.object().shape({
     username: yup.string().required("Must include username."),
     firstName: yup
@@ -80,38 +106,7 @@ export default function Form() {
       });
   };
 
-  const change = (evt) => {
-    const { name, value, type, checked } = evt.target;
-    const valueToUse = type === "checkbox" ? checked : value;
-    inputChange(name, valueToUse);
-  };
-
-  const inputChange = (name, value) => {
-    validate(name, value);
-    setFormValues({
-      ...formValues,
-      [name]: value,
-    });
-  };
-
-  const submit = (evt) => {
-    evt.preventDefault();
-    const newRegister = {
-      username: formValues.username.trim(),
-      firstName: formValues.firstName.trim(),
-      lastName: formValues.lastName.trim(),
-      phoneNumber: formValues.phoneNumber.trim(),
-      password: formValues.password.trim(),
-    };
-    postNewRegister(newRegister);
-  };
-
-  /* Each time the form value state is updated, check to see if it is valid per our schema.
-  This will allow us to enable/disable the submit button.*/
   useEffect(() => {
-    /* We pass the entire state into the entire schema, no need to use reach here.
-    We want to make sure it is all valid before we allow a user to submit
-    isValid comes from Yup directly */
     formSchema.isValid(formValues).then((valid) => {
       setDisabled(!valid);
     });
@@ -167,8 +162,7 @@ export default function Form() {
             onChange={change}
           />
           <br />
-          <br />
-          <br />
+
           <div className="errors-container">
             <Paragraph>{formErrors.username}</Paragraph>
             <Paragraph>{formErrors.firstName}</Paragraph>

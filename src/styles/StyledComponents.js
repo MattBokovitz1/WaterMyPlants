@@ -5,10 +5,9 @@ export default {
   primaryColor: "#92817a",
   secondaryColor: "#bedbbb",
   backgroundColor: "#8db596",
-  width: "75%",
 };
 
-//Nav
+// Nav
 
 export const Links = styled(Link)`
   text-decoration: none;
@@ -42,6 +41,7 @@ export const H1 = styled.h1`
   justify-content: center;
   align-items: center;
   color: white;
+
   @media (max-width: 500px) {
     display: none;
   }
@@ -51,10 +51,12 @@ export const Logo = styled.div`
   display: flex;
   width: 15%;
 `;
-//SignUp
+
+// SignUp
 
 export const Header = styled.h2`
   font-size: 3rem;
+  margin-bottom: 8%;
   padding: 0% 0% 1% 0%;
   color: #92817a;
 `;
@@ -62,21 +64,25 @@ export const Header = styled.h2`
 export const Input = styled.input`
   font-size: 1rem;
   margin: 0.5% 0% 0.5% 0%;
-  @media (max-width: 450px) {
-    font-size: 0.5rem;
+  @media (max-width: 500px) {
+    font-size: 1rem;
   }
 `;
 
-//Login
+// Login
 
 export const Button = styled.button`
   font-size: 1rem;
   margin: 0.5% 0% 5% 0%;
 `;
 
-// export const
+export const Quote = styled.div`
+  @media (max-width: 500px) {
+    display: none;
+  }
+`;
 
-//MyPlants
+// MyPlants
 
 export const H3 = styled.h3`
   font-size: 2rem;
@@ -87,12 +93,4 @@ export const Paragraph = styled.p`
   font-size: 1.5rem;
   color: white;
   padding: 0% 1% 0 0.5%;
-`;
-
-//Login Form
-
-export const Quote = styled.div`
-  @media (max-width: 450px) {
-    display: none;
-  }
 `;
