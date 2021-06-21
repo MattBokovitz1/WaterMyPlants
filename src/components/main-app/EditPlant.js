@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import axiosWithAuth from "../../utils/axiosWithAuth";
-import { Input, Header, Button } from "../../styles/StyledComponents";
+import { Input, Header, Button, Forms } from "../../styles/StyledComponents";
 
 const initialFormValues = {
   name: "",
@@ -39,38 +39,40 @@ const EditPlant = () => {
 
   return (
     <div className="plant-form">
-      <Header>Edit Plant</Header>
-      <form onSubmit={editPlant}>
-        <Input
-          type="text"
-          name="name"
-          placeholder="Name"
-          value={formValues.name}
-          onChange={handleChanges}
-        />
-        <Input
-          type="text"
-          name="location"
-          placeholder="Location"
-          value={formValues.location}
-          onChange={handleChanges}
-        />
-        <Input
-          type="text"
-          name="description"
-          placeholder="Description"
-          value={formValues.description}
-          onChange={handleChanges}
-        />
-        <Input
-          type="text"
-          name="plantURL"
-          placeholder="Plant URL"
-          value={formValues.plantURL}
-          onChange={handleChanges}
-        />
-        <Button>Edit Plant</Button>
-      </form>
+      <Forms>
+        <Header>Edit Plant</Header>
+        <form onSubmit={editPlant}>
+          <Input
+            type="text"
+            name="name"
+            placeholder="Name"
+            value={formValues.name}
+            onChange={handleChanges}
+          />
+          <Input
+            type="text"
+            name="location"
+            placeholder="Location"
+            value={formValues.location}
+            onChange={handleChanges}
+          />
+          <Input
+            type="text"
+            name="description"
+            placeholder="Description"
+            value={formValues.description}
+            onChange={handleChanges}
+          />
+          <Input
+            type="text"
+            name="plantURL"
+            placeholder="Plant URL"
+            value={formValues.plantURL}
+            onChange={handleChanges}
+          />
+          <Button>Edit Plant</Button>
+        </form>
+      </Forms>
     </div>
   );
 };

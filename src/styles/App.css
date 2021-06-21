@@ -5,12 +5,15 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url("https://images.unsplash.com/photo-1527451668186-d17acdb68207?ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80");
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+html {
+  margin: 0;
 }
 
 .App {
@@ -26,44 +29,15 @@ code {
   background-color: #92817a;
 }
 
-.plant-form {
-  width: 50%;
-  margin: 3% 25% 3% 25%;
-  padding: 0% 0 0% 0;
-  border-radius: 10%;
-  background-color: #bedbbb;
-}
-
 .plant-form input {
   display: flex;
   flex-direction: column;
   margin: 2% auto;
 }
 
-.plant-details button {
-  margin: 0%;
-  background: aquamarine;
-}
-.plant-card {
-  width: 50%;
-  margin: 8% 25% 2% 25%;
-  padding: 1% 0 1% 0;
-  padding-bottom: 2%;
-  border-radius: 10%;
-  background-color: #bedbbb;
-}
-
 .plant-card img {
   width: 70%;
   margin: 2% auto;
-}
-
-.form-container {
-  width: 50%;
-  margin: 8% 25% 2% 25%;
-  padding: 2% 3% 2% 3%;
-  border-radius: 10%;
-  background-color: #bedbbb;
 }
 
 @media (max-width: 500px) {
@@ -73,8 +47,7 @@ code {
   }
 
   .plant-card {
-    width: 75%;
-    margin: 13% auto;
+    width: 50%;
   }
 
   .plant-details {
@@ -83,6 +56,6 @@ code {
 
   .form-container {
     width: 75%;
-    margin: 13% auto;
+    /* margin: 20% auto; */
   }
 }

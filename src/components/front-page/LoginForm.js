@@ -9,6 +9,7 @@ import {
   Button,
   Input,
   Quote,
+  Forms,
 } from "../../styles/StyledComponents";
 
 const initialFormValues = {
@@ -35,7 +36,7 @@ export default function LoginForm() {
       .post("/auth/login", newLogin)
       .then((res) => {
         window.localStorage.setItem("token", res.data.token);
-        history.push("/");
+        history.push("/home");
       })
       .catch((err) => {
         debugger;
@@ -118,46 +119,47 @@ export default function LoginForm() {
   return (
     <div>
       <form onSubmit={submit}>
-        <div className="form-container">
-          <Header>Login</Header>
+        <Forms>
+          <div className="form-container">
+            <Header>Login</Header>
+            <Input
+              type="text"
+              name="username"
+              placeholder="Enter Your Username"
+              value={formValues.username}
+              onChange={change}
+            />
+            <br />
 
-          <Input
-            type="text"
-            name="username"
-            placeholder="Enter Your Username"
-            value={formValues.username}
-            onChange={change}
-          />
-          <br />
+            <Input
+              type="password"
+              name="password"
+              placeholder="Enter Your Password"
+              value={formValues.password}
+              onChange={change}
+            />
+            <br />
 
-          <Input
-            type="password"
-            name="password"
-            placeholder="Enter Your Password"
-            value={formValues.password}
-            onChange={change}
-          />
-          <br />
+            <div className="errors-container">
+              <Paragraph>{formErrors.username}</Paragraph>
+              <Paragraph>{formErrors.password}</Paragraph>
+            </div>
+            <br />
 
-          <div className="errors-container">
-            <Paragraph>{formErrors.username}</Paragraph>
-            <Paragraph>{formErrors.password}</Paragraph>
+            <Button disabled={disabled}>Click to Log In</Button>
+
+            {quotes.map((quote) => {
+              return (
+                <Quote>
+                  <div key={quote.id}>
+                    <Paragraph>"{quote.quote}"</Paragraph>
+                    <Paragraph>{quote.author}</Paragraph>
+                  </div>
+                </Quote>
+              );
+            })}
           </div>
-          <br />
-
-          <Button disabled={disabled}>Click to Log In</Button>
-
-          {quotes.map((quote) => {
-            return (
-              <Quote>
-                <div key={quote.id}>
-                  <Paragraph>"{quote.quote}"</Paragraph>
-                  <Paragraph>{quote.author}</Paragraph>
-                </div>
-              </Quote>
-            );
-          })}
-        </div>
+        </Forms>
       </form>
     </div>
   );

@@ -7,6 +7,7 @@ import {
   Header,
   Button,
   Input,
+  Forms,
 } from "../../styles/StyledComponents";
 
 const initialFormValues = {
@@ -115,78 +116,80 @@ export default function Form() {
   return (
     <div>
       <form onSubmit={submit}>
-        <div className="form-container">
-          <Header>Register Here!</Header>
+        <Forms>
+          <div className="form-container">
+            <Header>Register Here!</Header>
 
-          <Input
-            type="text"
-            name="username"
-            placeholder="Enter Username"
-            value={formValues.username}
-            onChange={change}
-          />
-          <br />
+            <Input
+              type="text"
+              name="username"
+              placeholder="Enter Username"
+              value={formValues.username}
+              onChange={change}
+            />
+            <br />
 
-          <Input
-            type="text"
-            name="firstName"
-            placeholder="Enter First Name"
-            value={formValues.firstName}
-            onChange={change}
-          />
-          <br />
+            <Input
+              type="text"
+              name="firstName"
+              placeholder="Enter First Name"
+              value={formValues.firstName}
+              onChange={change}
+            />
+            <br />
 
-          <Input
-            type="text"
-            name="lastName"
-            placeholder="Enter Last Name"
-            value={formValues.lastName}
-            onChange={change}
-          />
-          <br />
+            <Input
+              type="text"
+              name="lastName"
+              placeholder="Enter Last Name"
+              value={formValues.lastName}
+              onChange={change}
+            />
+            <br />
 
-          <Input
-            type="tel"
-            name="phoneNumber"
-            placeholder="Enter Phone Number"
-            value={formValues.phoneNumber}
-            onChange={change}
-          />
-          <br />
+            <Input
+              type="tel"
+              name="phoneNumber"
+              placeholder="Enter Phone Number"
+              value={formValues.phoneNumber}
+              onChange={change}
+            />
+            <br />
 
-          <Input
-            type="text"
-            name="password"
-            placeholder="Enter Password"
-            value={formValues.password}
-            onChange={change}
-          />
-          <br />
+            <Input
+              type="text"
+              name="password"
+              placeholder="Enter Password"
+              value={formValues.password}
+              onChange={change}
+            />
+            <br />
 
-          <div className="errors-container">
-            <Paragraph>{formErrors.username}</Paragraph>
-            <Paragraph>{formErrors.firstName}</Paragraph>
-            <Paragraph>{formErrors.lastName}</Paragraph>
-            <Paragraph>{formErrors.phoneNumber}</Paragraph>
-            <Paragraph>{formErrors.password}</Paragraph>
+            <div className="errors-container">
+              <Paragraph>{formErrors.username}</Paragraph>
+              <Paragraph>{formErrors.firstName}</Paragraph>
+              <Paragraph>{formErrors.lastName}</Paragraph>
+              <Paragraph>{formErrors.phoneNumber}</Paragraph>
+              <Paragraph>{formErrors.password}</Paragraph>
+            </div>
+            <br />
+
+            <Button disabled={disabled}>Click to Sign Up</Button>
+
+            <div className="register-container">
+              {registers.map((register) => {
+                if (!register) {
+                  return <h3>Working on Finding Your Account</h3>;
+                }
+                return (
+                  <div className="register-details">
+                    <h2>Your Registration Was Successful!</h2>
+                  </div>
+                );
+              })}
+            </div>
           </div>
-          <br />
-
-          <Button disabled={disabled}>Click to Sign Up</Button>
-
-          <div className="register-container">
-            {registers.map((register) => {
-              if (!register) {
-                return <h3>Working on Finding Your Account</h3>;
-              }
-              return (
-                <div className="register-details">
-                  <h2>Your Registration Was Successful!</h2>
-                </div>
-              );
-            })}
-          </div>
-        </div>
+        </Forms>
       </form>
     </div>
   );

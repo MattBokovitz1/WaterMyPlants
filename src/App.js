@@ -9,6 +9,7 @@ import MyPlants from "./components/main-app/MyPlants";
 import AddPlant from "./components/main-app/AddPlant";
 import EditPlant from "./components/main-app/EditPlant";
 import PrivateRoute from "./components/main-app/PrivateRoute";
+import Home from "./components/front-page/Home";
 
 const App = () => {
   return (
@@ -16,10 +17,11 @@ const App = () => {
       <div className="App">
         <NavBar />
         <Switch>
+          <Route exact path="/" component={Home} />
           <Route exact path="/login" component={LoginForm} />
           <Route exact path="/signup" component={SignupForm} />
-          <Redirect exact from="/reload" to="/" />
-          <PrivateRoute exact path="/" component={MyPlants} />
+          <Redirect exact from="/reload" to="/home" />
+          <PrivateRoute exact path="/home" component={MyPlants} />
           <PrivateRoute exact path="/add-plant" component={AddPlant} />
           <PrivateRoute exact path="/edit-plant/:id" component={EditPlant} />
         </Switch>
