@@ -12,19 +12,13 @@ const HomeRight = () => {
     <StyledPage>
       <RightBottom>
         <TopDiv>
-          <H1>
-            Use this app to add flourishing to your life. Remember to water so
-            that you have a colorful and joyful world.
-          </H1>
-          <p>
-            I forget to water my plants and they end up dying. I need a great
-            app so that I can store all of my plants to remind me to water.
-          </p>
+          <H1>This app adds flourishing to your life.</H1>
+          <p>Remember to water so that you have a colorful and joyful world.</p>
           <Button>Learn More</Button>
         </TopDiv>
 
         <BottomDiv>
-          <H2>Some of our favorite plants.</H2>
+          <H2>Some of our plants.</H2>
 
           <ParDiv>
             <IndivPars>
@@ -80,6 +74,9 @@ const StyledPage = styled.div`
   max-width: 100%;
   padding: 1rem;
   width: 60%;
+  @media (max-width: 1000px) {
+    display: none;
+  }
 `;
 
 const TopDiv = styled.div`

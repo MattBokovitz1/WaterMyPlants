@@ -150,6 +150,9 @@ export const StyledPage = styled.div`
   width: 35%;
   height: 100%;
   margin: 5% 0 0 0;
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
 `;
 
 export const StyledHeader = styled.h1`
